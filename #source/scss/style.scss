@@ -1,0 +1,487 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400&display=swap');
+// Шрифт по умолчанию
+$fontfamily: "Lato";
+// Переменная средней ширины экрана для скачка отзывчивой верстки
+$medium-width: 767px;
+
+// Ширина ограничивающего контейнера  макета (контента)
+$_container-width: 1100px;
+// Цвет основной
+$first_color: #848789;
+$second_color: #353738;
+$third_color: #f7f7f7;
+
+@import "nullstyle.scss";
+@import"mixin.scss";
+
+body {
+    color: $first_color;
+    background-color: $third_color;
+}
+
+body.locked {
+    overflow: hidden;
+}
+
+// Оболочка
+.wrapper {
+    overflow: hidden;
+}
+
+///////////////////
+
+
+// Основная сетка
+._container {
+    margin: 0 auto;
+    max-width: $_container-width;
+    // переменную $_container-width сделать шире на величину 2 паддингов
+    padding: 0 15px;
+}
+
+///////////////////
+
+// Подключение файлов стилей страниц и элементов
+@import "ui.scss";
+@import "header.scss";
+@import "footer.scss";
+
+
+
+.first-page {
+    min-height: 100vh;
+}
+
+.generation {
+
+    &__block {
+
+
+        @include adaptiv-value("padding-top", 120, 30, 0);
+        @include adaptiv-value("padding-bottom", 120, 30, 0);
+    }
+}
+
+.block {
+    text-align: center;
+
+    &__icon {
+        margin-bottom: 33px;
+    }
+
+    &__title {
+        font-size: 18px;
+        line-height: 1.2;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.2em;
+        color: $second_color;
+        margin-bottom: 20px;
+    }
+
+    &__text {
+        font-size: 18px;
+        line-height: 34px;
+        color: #848789;
+
+    }
+}
+
+.brands {
+    background-color: white;
+
+
+    &__row {
+        display: flex;
+
+
+
+        @media(max-width:$medium-width) {
+            flex-direction: column;
+        }
+    }
+
+    &__column {
+        flex: 0 0 33.333%;
+
+
+
+        &_b {
+            flex: 0 0 66.667%;
+
+
+        }
+    }
+
+    &__image {
+        padding-bottom: 38%;
+    }
+
+    &__block {
+        padding-top: 70px;
+        padding-bottom: 54px;
+        @include adaptiv-value("padding-left", 68, 15, 0);
+        @include adaptiv-value("padding-right", 68, 15, 0);
+
+        position: relative;
+
+        &::after {
+            content: "";
+            display: block;
+            position: absolute;
+            z-index: 2;
+            bottom: -10px;
+            left: 50%;
+            margin-left: -20px;
+            width: 0;
+            height: 0;
+            border-left: 20px solid transparent;
+            border-right: 20px solid transparent;
+            border-top: 10px solid white;
+
+        }
+    }
+
+    @media(max-width:$medium-width) {
+        &_3-columns {
+            .brands__column {
+                &:nth-child(1) {
+                    order: 2;
+                }
+
+                &:nth-child(2) {
+                    order: 1;
+                }
+
+                &:nth-child(3) {
+                    order: 3;
+                }
+            }
+
+        }
+    }
+}
+
+.item {
+    height: 100%;
+    width: 100%;
+    display: block;
+    position: relative;
+
+    &__logo {
+        position: absolute;
+        display: block;
+        z-index: 2;
+        width: 100%;
+
+        height: 100%;
+        display: flex;
+        transition: all 0.3s;
+        align-items: center;
+        justify-content: center;
+        background-color: rgba(100, 194, 158, 0.5);
+        visibility: hidden;
+        opacity: 0;
+    }
+
+    &:hover {
+        .item__logo {
+            visibility: visible;
+            opacity: 1;
+        }
+
+    }
+
+    &__image {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+
+    }
+
+    @media(max-width:$medium-width) {
+        min-height: 250px;
+
+    }
+
+
+}
+
+.block {
+
+    &__text {
+
+        &_little {
+            font-size: 16px;
+            line-height: 30px;
+            text-align: justify;
+
+            &::after {
+                content: "";
+
+                display: block;
+                margin: 50px auto 0;
+                width: 50px;
+                height: 1px;
+                background-color: rgba(56, 53, 53, 0.2);
+            }
+        }
+    }
+}
+
+.slider {
+    @include adaptiv-value("padding-top", 120, 30, 0);
+    @include adaptiv-value("padding-bottom", 60, 30, 0);
+
+
+
+    &__item {
+        text-align: center;
+    }
+
+    &__icon {
+        margin-bottom: 35px;
+    }
+
+    &__title {
+        margin-bottom: 20px;
+        font-size: 18px;
+        line-height: 1.2;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        color: $second_color;
+
+        span {
+            font-weight: 300;
+            color: $first_color;
+        }
+    }
+
+    &__text {
+        text-align: center;
+        font-size: 24px;
+        line-height: 34px;
+
+        font-style: italic;
+    }
+}
+
+.slider__item {
+    //border: 1px dashed gray;
+    padding-bottom: 30px;
+
+}
+
+.swiper-pagination-bullet {
+    background: transparent;
+    border: 1px solid #a9afb3;
+    width: 11px;
+    height: 11px;
+    opacity: 1;
+
+    margin: 20px;
+
+
+}
+
+.swiper-pagination-bullet-active {
+    background-color: #a9afb3;
+}
+
+.shop {
+
+
+    &__body {
+        //border: 1px dashed gray;
+        //height: 200px;
+        display: flex;
+
+        @media(max-width: $medium-width) {
+            flex-wrap: wrap;
+        }
+
+
+    }
+
+    &__column {
+
+        flex: 1 1 33.3333%;
+        @include adaptiv-value("height", 534, 106, 0);
+
+        @media(max-width: $medium-width) {
+            // border: 1px dashed gray;
+            height: 100vw;
+
+            flex: 1 0 100%;
+
+        }
+
+    }
+
+    &__cell-3-items {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        //border: 1px dashed gray;
+
+    }
+
+    &__2-images-row {
+        flex: 1 1 50%;
+        display: flex;
+        height: 100%;
+    }
+
+    &__2-images-row-item {
+        flex: 0 1 50%;
+
+
+    }
+
+    &__1-image-row {
+        flex: 1 1 50%;
+
+
+    }
+
+
+
+    &__footer {
+        padding: 0 25px;
+        @include adaptiv-value("padding-bottom", 75, 50, 0);
+        @include adaptiv-value("padding-top", 75, 50, 0);
+
+        background-color: #282f35;
+        text-align: center;
+
+    }
+
+    &__btn {
+        display: inline-block;
+        border: 1px solid rgba(255, 255, 255, 0.49);
+        padding: 20px 60px;
+        font-size: 14px;
+        line-height: 1.2;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.2em;
+        color: #ffffff;
+    }
+}
+
+.link-item {
+    display: block;
+
+    height: 100%;
+    position: relative;
+
+    &__background {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+    }
+
+    &__icon {
+
+        width: 100%;
+
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        align-items: center;
+        justify-content: center;
+
+        background-color: rgba(100, 194, 158, 0.5);
+        visibility: hidden;
+
+        span {
+            font-size: 14px;
+            line-height: 1.2;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: #ffffff;
+        }
+
+    }
+
+    &:hover {
+        .link-item__icon {
+            visibility: visible;
+        }
+    }
+}
+
+.subscribe {
+    background-color: #ffffff;
+
+    &__body {
+        padding: 110px 0;
+        max-width: 534px;
+        margin: 0 auto;
+        text-align: center;
+
+    }
+
+    &__logo {
+        margin-bottom: 39px;
+    }
+
+    &__label {
+        font-size: 24px;
+        line-height: 34px;
+        font-weight: 400;
+        font-style: italic;
+        color: #848789;
+        margin-bottom: 35px;
+    }
+
+    &__form {
+        display: flex;
+    }
+
+    &__input {
+        flex: 1 1 auto;
+        background-color: #ffffff;
+        border: 1px solid #d3d7d9;
+        margin-right: 8px;
+        font-size: 20px;
+        line-height: 24px;
+        font-weight: 400;
+        font-style: italic;
+        color: #929292;
+        padding: 0 28px;
+
+        &:focus {
+            color: #333;
+
+        }
+    }
+
+    &__btn {
+        font-size: 24px;
+        line-height: 24px;
+        font-weight: 300;
+        color: #ffffff;
+        background-color: #64c29e;
+        padding: 26px 45px;
+
+    }
+
+    @media(max-width: $medium-width) {
+        &__form {
+            flex-direction: column;
+        }
+
+        &__input {
+            margin-right: 0px;
+            margin-bottom: 8px;
+            padding: 25px;
+        }
+    }
+}

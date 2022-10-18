@@ -1,0 +1,44 @@
+// Ширина экрана при которой начинаем изменять свойства
+$targetDisplayWidth: 1600;
+// Ширина экрана (минимальная) к которой масштабируем свойства при выборе варианта с уменьшением от заданной ширины (режим 0)
+$minDisplayWidth: 320;
+// Ширина экрана (максимальная) к которой масштабируем свойства при выборе варианта с увеличением от заданной ширины (режим 1)
+$maxDisplayWidth: 2000;
+
+// Масштабирование свойств
+@mixin adaptiv-value($property, $startSize, $targetSize, $type) {
+    #{$property}: $startSize + px;
+
+    @if $type==1 {
+
+        // Только если больше контейнера 
+        @if ($startSize < $targetSize) {
+            $addSize: ($targetSize - $startSize);
+
+
+            @media(min-width: #{$targetDisplayWidth + px}) {
+                #{$property}: calc(#{$startSize + px} + #{$addSize} * ((100vw - #{$targetDisplayWidth + px}) / #{$maxDisplayWidth - $targetDisplayWidth}));
+            }
+        }
+
+        @else if ($startSize > $targetSize) {
+            $addSize: ($startSize - $targetSize);
+
+
+            @media(min-width: #{$targetDisplayWidth + px}) {
+                #{$property}: calc(#{$startSize + px} - #{$addSize} * ((#{$targetDisplayWidth + px} - 100vw) / #{$targetDisplayWidth - $maxDisplayWidth}));
+            }
+        }
+
+    }
+
+    @else {
+        // Только если меньше контейнера 
+        $addSize: ($startSize - $targetSize);
+
+
+        @media(max-width: #{$targetDisplayWidth + px}) {
+            #{$property}: calc(#{$targetSize + px} + #{$addSize} * ((100vw - #{$minDisplayWidth + px}) / #{$targetDisplayWidth - $minDisplayWidth}));
+        }
+    }
+}

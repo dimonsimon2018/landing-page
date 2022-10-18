@@ -1,0 +1,39 @@
+<script>
+    function ibg() {
+
+        let ibg = document.querySelectorAll(".ibg");
+        for (var i = 0; i < ibg.length; i++) {
+            if (ibg[i].querySelector('img')) {
+                ibg[i].style.backgroundImage = 'url(' + ibg[i].querySelector('img').getAttribute('src') + ')';
+            }
+        }
+    }
+
+    ibg();
+    const burgrerMenu = document.querySelector(".icon-menu");
+    const menuBody = document.querySelector(".menu__body");
+    const htmlBody = document.querySelector("body");
+    burgrerMenu.onclick = function () {
+
+        burgrerMenu.classList.toggle("active");
+        menuBody.classList.toggle("active");
+        htmlBody.classList.toggle("locked");
+    }
+    new Swiper('.swiper', {
+        pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+            dynamicBullets: false,
+        },
+
+        keyboard: {
+            enabled: true,
+            pageUpDown: true,
+        },
+        mousewheel: {
+            //eventsTarget: ".slider__item"
+        },
+        autoHeight: true,
+
+    });
+</script>
